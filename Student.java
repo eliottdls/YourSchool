@@ -55,8 +55,17 @@ public class Student {
     return a;
   }
 
+  public School getAccepte() {
+		School s = this.accepte;
+		return s;
+	}
+
   public void setAccepte(School school){
     this.accepte = school;
+  }
+
+  public void setactuelPreference(String school){
+    this.actuelPreference = school;
   }
 
     /** Afficher le jeu.  Le jeu est affiché sous la forme :

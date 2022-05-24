@@ -17,6 +17,8 @@ public class Algorithm {
      */
 	private String WhoIsAsking;
 
+  private Boolean fini;
+
 	/** Construire un arbitre à partir de deux joueurs.
 	 * @param j1 joueur
      * @param j2 joueur
@@ -35,18 +37,38 @@ public class Algorithm {
     } else if (WhoIsAsking == "schools") {
       School2Student();
     }
+
+    //Une fois le tri fini, on affiche le résultat
+    for(CHAQUE ECOLE DE LA LISTE){
+      for(CHAQUE ELEVE ACCEPTE){
+        System.out.println("XXXXX");
+      }
+    }
 	}
 
   /*
   * Les écoles proposent des places aux élèves selon leur nombre de places.
   */
   public void Student2School(){
+    fini = true; //Le tri est considéré fini tant qu'un élève ne dit pas le contraire
+
+    //Chaque étudiant fait une proposition à son école préférée actuelle
     for (CHAQUE STUDENT DE LA LISTE){
       for (CHAQUE ECOLE DE LA LISTE){
         if (STUDENT.getactuelPreference() == SCHOOL.getNom()){
           Student2SchoolProposal(STUDENT, SCHOOL);
         }
       }
+      //On vérifie si c'est fini (si chaque étudiant à une école qui l'a accepté)
+      //Si un seul n'a pas d'école, ce ne sera pas fini tant que tous ses choix ne seront pas refusés (son choix n°5).
+      if (STUDENT.getAccepte() == NULL && STUDENT.getactuelPreference() != STUDENT.preference.get(4) ){
+        fini = false;
+      }
+    }
+
+    //Si ce n'est pas fini, on refait un tour de demandes
+    if (fini == false){
+      Student2School();
     }
   }
 
@@ -56,16 +78,35 @@ public class Algorithm {
     if (school.liste.get(nbMax - 1) == NULL) { //Si il reste des places libres dans l'école
       school.liste.add(student); //On ajoute l'étudiant dans la liste de l'école
       student.setAccepte(school); //On ajoute l'école à l'élève comme choix 1 qui l'a accepté
-    } else { //Sinon on modifie la préférence actuelle de l'élève par le suivant
-      
-    }
+    } else { //Sinon on vérifie si l'élève peut prendre la place d'un autre
+      int i = 0;
+      Student competition = school.liste.get(i);
+      while (school.liste.get(i) != NULL){
+        if (school.preference.indexOf(competition) < school.preference.indexOf(school.liste.get(i))){
+          competition = school.liste.get(i));
+        }
+        i += 1;
+      } if (school.preference.indexOf(student) < school.preference.indexOf(competition)) {
+        //On retire l'étudiant le moins bien classé
+        school.liste.remove(competition);
+        Int i = competition.preference.indexOf(school.getNom()); //indice de l'école actuelle dans les préférences de l'élève
+        competition.setactuelPreference = competition.preference.get(i+1); //On passe donc à l'école suivante
+        competition.setAccepte(NULL);
+
+        //On ajoute l'étudiant qui vient de faire sa demande
+        school.liste.add(student); //On ajoute l'étudiant dans la liste de l'école
+        student.setAccepte(school); //On ajoute l'école à l'élève comme choix 1 qui l'a accepté
+      } else { //Sinon on modifie la préférence actuelle de l'élève par le suivant
+        Int i = student.preference.indexOf(school.getNom()); //indice de l'école actuelle dans les préférences de l'élève
+        student.setactuelPreference = student.preference.get(i+1); //On passe donc à l'école suivante
+      }
   }
 
   /*
   * Les étudiants demandent une place à leur école favorite encore sur leur liste.
   */
   public void School2Student(){
-
+    null;
   }
 
 
