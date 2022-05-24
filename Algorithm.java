@@ -39,10 +39,9 @@ public class Algorithm {
     }
 
     //Une fois le tri fini, on affiche le résultat
-    for(CHAQUE ECOLE DE LA LISTE){
-      for(CHAQUE ELEVE ACCEPTE){
+    Iterator itr=schools.iterator();//getting the Iterator
+    while(itr.hasNext()){//check if iterator has the elements
         System.out.println(SCHOOL.getNom() + " accepted " + SCHOOL.accepte.toArray());
-      }
     }
 	}
 
