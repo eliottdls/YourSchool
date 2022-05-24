@@ -14,7 +14,7 @@ public class Initialise {
     String choix; //Qui fait les demande
 
     //Réception des fichiers, + découpe
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(school_file.txt))) {
     String line;
 	    while ((line = br.readLine()) != null) {
 				String[] schoolsStrings = decoupe(line);
@@ -29,7 +29,7 @@ public class Initialise {
     //    i += 1;
     //    schools.add(schoolsStrings[0]); //Liste des écoles à envoyer à l'algorithme
     //}
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(student_file.txt))) {
     String line;
 	    while ((line = br.readLine()) != null) {
 				String[] studentsStrings = decoupe(line);
