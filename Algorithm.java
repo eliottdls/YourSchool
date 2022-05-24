@@ -41,7 +41,7 @@ public class Algorithm {
     //Une fois le tri fini, on affiche le résultat
     for(CHAQUE ECOLE DE LA LISTE){
       for(CHAQUE ELEVE ACCEPTE){
-        System.out.println("XXXXX");
+        System.out.println(SCHOOL.getNom() + " accepted " + SCHOOL.accepte.toArray());
       }
     }
 	}
@@ -108,6 +108,5 @@ public class Algorithm {
   public void School2Student(){
     null;
   }
-
 
 }
