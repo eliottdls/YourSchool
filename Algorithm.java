@@ -41,7 +41,7 @@ public class Algorithm {
     //Une fois le tri fini, on affiche le résultat
     Iterator itr=schools.iterator();//getting the Iterator
     while(itr.hasNext()){//check if iterator has the elements
-        System.out.println(SCHOOL.getNom() + " accepted " + SCHOOL.accepte.toArray());
+      System.out.println(itr.next() + " accepted " + itr.accepte.toArray()); //Sans le toArray ???
     }
 	}
 
@@ -52,10 +52,12 @@ public class Algorithm {
     fini = true; //Le tri est considéré fini tant qu'un élève ne dit pas le contraire
 
     //Chaque étudiant fait une proposition à son école préférée actuelle
-    for (CHAQUE STUDENT DE LA LISTE){
-      for (CHAQUE ECOLE DE LA LISTE){
-        if (STUDENT.getactuelPreference() == SCHOOL.getNom()){
-          Student2SchoolProposal(STUDENT, SCHOOL);
+    Iterator itrStud=students.iterator();//getting the Iterator
+    while(itrStud.hasNext()){
+      Iterator itrScho=schools.iterator();
+      while(itrScho.hasNext()){
+        if (itrStud.next().getactuelPreference() == itrScho.next().getNom()){
+          Student2SchoolProposal(itrStud.next(), itrScho.next());
         }
       }
       //On vérifie si c'est fini (si chaque étudiant à une école qui l'a accepté)
