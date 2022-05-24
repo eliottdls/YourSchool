@@ -4,13 +4,17 @@ public class Student {
 
     /** Attribut d'un student à visibilité privée.
      * Nom de l'étudiant
+     * (on considère que chaque étudiant à un nom unique -> le nom est un id)
      */
 	private String nom;
 
     /** Attribut d'un joueur à visibilité privée.
      * Liste des écoles préférées de l'étudiant (liste ordonnée)
+     * Un étudiant demande 5 écoles
      */
 	private List<School> preference;
+
+  private School actuelPreference;
 
 	/** Construire un joueur à partir de son nom et de sa strategie.
 	 * @param nom nom du joueur
