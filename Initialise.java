@@ -14,21 +14,36 @@ public class Initialise {
     String choix; //Qui fait les demande
 
     //Réception des fichiers, + découpe
-    int i = 1;
-    for (CHAQUE LIGNE DE SCHOOLS) {
-        String[] schoolsStrings = decoupe(FICHIER_ECOLES_LIGNE1);
-        School schoolsStrings[0] = new School(schoolsStrings[0], i, schoolsStrings[1], schoolsStrings[2]);
-        i += 1;
-        schools.add(schoolsStrings[0]); //Liste des écoles à envoyer à l'algorithme
-    }
-
-    int y = 1;
-    for (CHAQUE LIGNE DE STUDENTS) {
-        String[] studentsStrings = decoupe(FICHIER_students_LIGNE1);
-        Student studentsStrings[0] = new Student(studentsStrings[0], y, studentsStrings[1]);
-        y += 1;
-        students.add(studentsStrings[0]); //Liste des étudiants à envoyer à l'algorithme
-    }
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+    String line;
+	    while ((line = br.readLine()) != null) {
+				String[] schoolsStrings = decoupe(line);
+				School schoolsStrings[0] = new School(schoolsStrings[0], i, schoolsStrings[1], schoolsStrings[2]);
+				schools.add(schoolsStrings[0]); //Liste des écoles à envoyer à l'algorithme
+	    }
+		}
+		//int i = 1;
+    //for (CHAQUE LIGNE DE SCHOOLS) {
+    //    String[] schoolsStrings = decoupe(FICHIER_ECOLES_LIGNE1);
+    //    School schoolsStrings[0] = new School(schoolsStrings[0], i, schoolsStrings[1], schoolsStrings[2]);
+    //    i += 1;
+    //    schools.add(schoolsStrings[0]); //Liste des écoles à envoyer à l'algorithme
+    //}
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+    String line;
+	    while ((line = br.readLine()) != null) {
+				String[] studentsStrings = decoupe(line);
+				Student studentsStrings[0] = new Student(studentsStrings[0], y, studentsStrings[1]);
+		    students.add(studentsStrings[0]); //Liste des étudiants à envoyer à l'algorithme
+	    }
+		}
+    //int y = 1;
+    //for (CHAQUE LIGNE DE STUDENTS) {
+    //    String[] studentsStrings = decoupe(FICHIER_students_LIGNE1);
+    //    Student studentsStrings[0] = new Student(studentsStrings[0], y, studentsStrings[1]);
+    //    y += 1;
+    //    students.add(studentsStrings[0]); //Liste des étudiants à envoyer à l'algorithme
+    //}
 
     //On demande à l'utilisateur qui doit faire les sérénades
     choix = serenades();
