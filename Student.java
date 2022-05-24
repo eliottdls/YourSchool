@@ -8,21 +8,30 @@ public class Student {
      */
 	private String nom;
 
+  private Integer id;
+
     /** Attribut d'un joueur à visibilité privée.
      * Liste des écoles préférées de l'étudiant (liste ordonnée)
      * Un étudiant demande 5 écoles
      */
-	private List<School> preference;
+	private List<String> preference; //List<School>
 
-  private School actuelPreference;
+  private String actuelPreference; //School
+
+  private School accepte; //School
 
 	/** Construire un joueur à partir de son nom et de sa strategie.
 	 * @param nom nom du joueur
 	 * @param strategie strategie du joueur
 	 */
-	public Student(String nom, String vows) {
+	public Student(String nom, Integer id, String vows) {
 		assert nom != null;
 		this.nom = nom;
+    this.id = id;
+    preference = new ArrayList<String>();
+    preference.add(vows.split(","));
+    actuelPreference = preference.get(0);
+    accepte = null;
 	}
 
 	/** Obtenir le nom d'un joueur.
@@ -41,12 +50,14 @@ public class Student {
 		return p;
 	}
 
-	/** Obtenir la prise au prochain coup d'un joueur.
-	 * @return la prise au prochain coup d'un joueur
-	 */
-	public int getPrise(Jeu jeu) {
-		return strategie.getPrise(jeu);
-	}
+  public String getactuelPreference() {
+    String a = actuelPreference;
+    return a;
+  }
+
+  public void setAccepte(School school){
+    this.accepte = school;
+  }
 
     /** Afficher le jeu.  Le jeu est affiché sous la forme :
      *

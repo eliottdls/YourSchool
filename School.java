@@ -8,10 +8,14 @@ public class School {
      */
 	private String nom;
 
+	private Integer id;
+
     /** Attribut d'une école
      * Tous les étudiants qui demandent l'école sont classés dans l'ordre de choix de l'école
      */
-	private List<Student> preference;
+	private List<Student> preference; //List<Student>
+
+	private List<Student> liste;
 
 	/*
 	* Nombre de places dans l'école
@@ -22,10 +26,17 @@ public class School {
 	 * @param nom nom du joueur
 	 * @param strategie strategie du joueur
 	 */
-	public Joueur(String nom, Integer nb, String preference) {
+	public Joueur(String nom, Integer id, Integer nb, String preference) {
 		assert nom != null;
 		this.nom = nom;
+		this.id = id;
 		this.places = nb;
+		preference = new ArrayList<String>();
+		preference.add(preference.split(","));
+		liste = new ArrayList<String>();
+		/*for (int i = 0; i < nb: i++){
+			liste.add(preference.get(i));
+		}*/
 	}
 
 	/** Obtenir le nom d'un joueur.
@@ -41,6 +52,11 @@ public class School {
 	 */
 	public List<Student> getPreference() {
 		null;
+	}
+
+	public Integer getPlaces(){
+		Integer n = this.places;
+		return n;
 	}
 
     /** Afficher le jeu.  Le jeu est affiché sous la forme :
