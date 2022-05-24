@@ -62,7 +62,7 @@ public class Algorithm {
       }
       //On vérifie si c'est fini (si chaque étudiant à une école qui l'a accepté)
       //Si un seul n'a pas d'école, ce ne sera pas fini tant que tous ses choix ne seront pas refusés (son choix n°5).
-      if (STUDENT.getAccepte() == NULL && STUDENT.getactuelPreference() != STUDENT.preference.get(4) ){
+      if (itrStud.next().getAccepte() == NULL && itrStud.next().getactuelPreference() != STUDENT.preference.get(4) ){
         fini = false;
       }
     }
