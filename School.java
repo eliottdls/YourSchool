@@ -1,4 +1,5 @@
 package YourSchool;
+import java.util.*;
 
 public class School {
 
@@ -13,9 +14,9 @@ public class School {
     /** Attribut d'une école
      * Tous les étudiants qui demandent l'école sont classés dans l'ordre de choix de l'école
      */
-	private List<Student> preference; //List<Student>
+	private ArrayList<Student> preference; //List<Student>
 
-	private List<Student> liste;
+	private ArrayList<Student> liste;
 
 	/*
 	* Nombre de places dans l'école
@@ -26,7 +27,7 @@ public class School {
 	 * @param nom nom du joueur
 	 * @param strategie strategie du joueur
 	 */
-	public Joueur(String nom, Integer id, Integer nb, String preference) {
+	public School(String nom, Integer id, Integer nb, String preference) {
 		assert nom != null;
 		this.nom = nom;
 		this.id = id;
@@ -50,8 +51,9 @@ public class School {
 	/** Obtenir la stratégie du joueur.
 	 * @return la stratégie du joueur.
 	 */
-	public List<Student> getPreference() {
-		null;
+	public ArrayList<Student> getPreference() {
+		ArrayList<Student> l = preference;
+		return l;
 	}
 
 	public Integer getPlaces(){

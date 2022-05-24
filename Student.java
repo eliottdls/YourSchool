@@ -1,4 +1,5 @@
 package YourSchool;
+import java.util.*;
 
 public class Student {
 
@@ -14,7 +15,7 @@ public class Student {
      * Liste des écoles préférées de l'étudiant (liste ordonnée)
      * Un étudiant demande 5 écoles
      */
-	private List<String> preference; //List<School>
+	private ArrayList<String> preference; //List<School>
 
   private String actuelPreference; //School
 
@@ -45,8 +46,8 @@ public class Student {
 	/** Obtenir la stratégie du joueur.
 	 * @return la stratégie du joueur.
 	 */
-	public List<School> getPreference() {
-		List<School> p = preference;
+	public ArrayList<School> getPreference() {
+		ArrayList<School> p = preference;
 		return p;
 	}
 
