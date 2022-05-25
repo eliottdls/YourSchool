@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Initialise {
 
 	/** Initialise les étudiants et écoles et choisit le type de sérénade.
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * @throws IOException
+	 * @throws FileNotFoundException
   *
 	 */
 	public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -64,7 +64,7 @@ public class Initialise {
 
     //Fin de l'initialisation, on envoie les données à l'algorithme
     Algorithm algo = new Algorithm(students, schools, choix);
-
+		algo.sorting();
 	}
 
   public static String serenades(){
