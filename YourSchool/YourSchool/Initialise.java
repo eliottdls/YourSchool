@@ -1,6 +1,6 @@
 package YourSchool;
 
-import java.io.BufferedReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -8,9 +8,11 @@ import java.util.Scanner;
 public class Initialise {
 
 	/** Initialise les étudiants et écoles et choisit le type de sérénade.
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
   *
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 
     //Initialisation des listes
     ArrayList<School> schools = new ArrayList<School>();
@@ -19,7 +21,7 @@ public class Initialise {
 
     //Réception des fichiers, + découpe
 		int id = 0;
-		try (BufferedReader br = new BufferedReader(new FileReader(student_file.txt))) {
+		try (BufferedReader br = new BufferedReader(new FileReader("student_file.txt"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] studentsStrings = line.split(":");
@@ -27,8 +29,8 @@ public class Initialise {
 				students.add(new Student(studentsStrings[0], id, studentsStrings[1])); //Liste des étudiants à envoyer à l'algorithme
 			}
 		}
-		
-		try (BufferedReader br = new BufferedReader(new FileReader(school_file.txt))) {
+
+		try (BufferedReader br = new BufferedReader(new FileReader("school_file.txt"))) {
 		    String line;
 		    id = 0;
 		    while ((line = br.readLine()) != null) {
@@ -36,7 +38,7 @@ public class Initialise {
 				//School test = new School(schoolsStrings[0], id, (integer)schoolsStrings[1], schoolsStrings[2]);
 				ArrayList<Student> schoolpreference;
 				String[] schoolpref = schoolsStrings[2].split(",");
-				
+
 				Iterator<Student> itr=students.iterator();//getting the Iterator
 			    while(itr.hasNext()){//check if iterator has the elements
 			    	for (int x = 0; x<5; x++) {
