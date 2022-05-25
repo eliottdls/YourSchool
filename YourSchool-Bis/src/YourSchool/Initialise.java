@@ -38,15 +38,18 @@ public class Initialise {
 				//School test = new School(schoolsStrings[0], id, (integer)schoolsStrings[1], schoolsStrings[2]);
 				ArrayList<Student> schoolpreference = new ArrayList<Student>();
 				String[] schoolpref = schoolsStrings[2].split(",");
-
-				Iterator<Student> itr=students.iterator();//getting the Iterator
-			    while(itr.hasNext()){//check if iterator has the elements
-			    	for (int x = 0; x<5; x++) {
-			    		if (itr.next().getNom() == schoolpref[x]) {
-			    			schoolpreference.add(itr.next());
+				int taille = schoolpref.length;
+				
+				for (int x = 0; x < taille; x++) {
+					//System.out.println("X " + schoolpref[x]);
+					for (int s = 0; s < 25; s ++) {
+						if (students.get(s).getNom().equals(schoolpref[x])) {
+			    			schoolpreference.add(students.get(s));
 					    }
-			    	}
-			    }
+					}
+					
+				}
+				
 				schools.add(new School(schoolsStrings[0], id, Integer.parseInt(schoolsStrings[1]), schoolpreference)); //Liste des écoles à envoyer à l'algorithme
 				id += 1;
 		    }

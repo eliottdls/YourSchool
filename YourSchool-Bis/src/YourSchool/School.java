@@ -77,7 +77,10 @@ public class School {
     /** Afficher le jeu.  Le jeu est affiché sous la forme :
      *
 	 */
-    public String toString() {
-    	return "School " + this.nom + " accepted " + this.liste.toArray();
+    /*public String toString() {
+    	//return "School " + this.nom + " accepted " + this.liste.toArray();
+    }*/
+	public String toString() {
+    	return "School " + this.nom;
     }
 }
