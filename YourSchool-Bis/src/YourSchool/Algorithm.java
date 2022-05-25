@@ -64,7 +64,7 @@ public class Algorithm {
     Iterator<Student> itrStud=students.iterator();//getting the Iterator
     //studentsclone = (ArrayList<Student>) students.clone();
     while(itrStud.hasNext()){
-    	System.out.println("Stud " + itrStud.next());
+    	System.out.println("Stud " + itrStud.next() + " " + itrStud.hasNext());
       /*Iterator<School> itrScho=schools.iterator();
       while(itrScho.hasNext()){
     	  System.out.println("Scho " + itrScho.next());
