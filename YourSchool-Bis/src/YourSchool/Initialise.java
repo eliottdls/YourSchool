@@ -36,7 +36,7 @@ public class Initialise {
 		    while ((line = br.readLine()) != null) {
 				String[] schoolsStrings = line.split(":");
 				//School test = new School(schoolsStrings[0], id, (integer)schoolsStrings[1], schoolsStrings[2]);
-				ArrayList<Student> schoolpreference;
+				ArrayList<Student> schoolpreference = new ArrayList<Student>();
 				String[] schoolpref = schoolsStrings[2].split(",");
 
 				Iterator<Student> itr=students.iterator();//getting the Iterator
