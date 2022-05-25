@@ -27,17 +27,12 @@ public class School {
 	 * @param nom nom du joueur
 	 * @param strategie strategie du joueur
 	 */
-	public School(String nom, Integer id, Integer nb, String preference) {
+	public School(String nom, int id, int schoolsStrings, ArrayList<Student> schoolsStrings2) {
 		assert nom != null;
 		this.nom = nom;
 		this.id = id;
-		this.places = nb;
-		preference = new ArrayList<String>();
-		preference.add(preference.split(","));
-		liste = new ArrayList<String>();
-		/*for (int i = 0; i < nb: i++){
-			liste.add(preference.get(i));
-		}*/
+		this.places = schoolsStrings;
+		this.preference = schoolsStrings2;
 	}
 
 	/** Obtenir le nom d'un joueur.
@@ -60,11 +55,29 @@ public class School {
 		Integer n = this.places;
 		return n;
 	}
+	
+	public ArrayList<Student> getListe(){
+		ArrayList<Student> l = liste;
+		return l;
+	}
+	
+	public Student getListeIndex(int index){
+		Student s = liste.get(index);
+		return s;
+	}
+	
+	public void addListe(Student stud){
+		liste.add(stud);
+	}
+	
+	public void removeListe(Student stud){
+		liste.remove(stud);
+	}
 
     /** Afficher le jeu.  Le jeu est affiché sous la forme :
      *
 	 */
     public String toString() {
-    	return "School " + this.nom;
+    	return "School " + this.nom + " accepted " + this.liste.toArray();
     }
 }
