@@ -1,7 +1,0 @@
-Wash-ington:7:Denis,Peter,Rick,Paul,Charlotte,Kevin,Pierre,Megane,Brice,Anais,Ethan,Tom,Louise,Elena,Bob,Marc,Robert,Clarisse,Lea,Marie
-Hard-vard:4:Megane,Xavier,Ethan,Pierre,Bob,Charlotte,Paul,Anais,Clarisse,Louise,Lea,Robert,Marie,Kevin,Rick,Louis,Anna,Marc,Peter,Brice,Blaise,Thomas,Denis
-Hell-ington:2:Marc,Elena,Clarisse,Xavier,Denis,Thomas,Kevin,Pierre,Megane,Brice,Anais,Blaise,Tom,Louise,Anna,Marie,Robert,Peter,Paul
-Last-Vegas:6:Peter,Xavier,Bob,Louis,Louise,Clarisse,Paul,Anna,Thomas,Blaise,Ethan,Tom,Elena,Anais,Marie,Lea,Charlotte,Denis,Rick
-Stan-smith:1:Lea,Pierre,Thomas,Kevin,Clarisse,Megane,Robert,Anna,Louis,Elena,Charlotte,Anais,Bob,Xavier
-Buck-ingame:3:Rick,Marc,Pierre,Charlotte,Blaise,Denis,Brice,Robert,Tom,Ethan,Louis
-Sans-francisco:2:Rick,Marie,Thomas,Louise,Bob,Anna,Louis,Tom,Ethan,Kevin,Elena,Blaise,Brice,Marc,Xavier,Peter,Lea,Megane,Paul
