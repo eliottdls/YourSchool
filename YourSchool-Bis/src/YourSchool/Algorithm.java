@@ -7,11 +7,13 @@ public class Algorithm {
      * Joueur 1.
      */
 	private ArrayList<Student> students;
+	private ArrayList<Student> studentsclone;
 
     /** Attribut d'un arbitre à visibilité privée.
      * Joueur 2.
      */
 	private ArrayList<School> schools;
+	private ArrayList<School> schoolsclone;
 
 	/** Attribut d'un arbitre à visibilité privée.
      * Joueur 2.
@@ -60,13 +62,16 @@ public class Algorithm {
 
     //Chaque étudiant fait une proposition à son école préférée actuelle
     Iterator<Student> itrStud=students.iterator();//getting the Iterator
+    //studentsclone = (ArrayList<Student>) students.clone();
     while(itrStud.hasNext()){
-      Iterator<School> itrScho=schools.iterator();
+    	System.out.println("Stud " + itrStud.next());
+      /*Iterator<School> itrScho=schools.iterator();
       while(itrScho.hasNext()){
+    	  System.out.println("Scho " + itrScho.next());
         if (itrStud.next().getactuelPreference() == itrScho.next().getNom()){
           Student2SchoolProposal(itrStud.next(), itrScho.next());
         }
-      }
+      }*/
       //On vérifie si c'est fini (si chaque étudiant à une école qui l'a accepté)
       //Si un seul n'a pas d'école, ce ne sera pas fini tant que tous ses choix ne seront pas refusés (son choix n°5).
       if (itrStud.next().getAccepte() == null && itrStud.next().getactuelPreference() != itrStud.next().getPreferenceIndex(4) ){
