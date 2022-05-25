@@ -63,6 +63,8 @@ public class Initialise {
     choix = serenades();
 
     //Fin de l'initialisation, on envoie les données à l'algorithme
+    System.out.println("Liste students : " + students);
+    System.out.println("Liste ecoles : " + schools);
     Algorithm algo = new Algorithm(students, schools, choix);
     System.out.println("YOUHOU");
 	algo.sorting();
