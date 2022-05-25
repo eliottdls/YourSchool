@@ -64,7 +64,8 @@ public class Initialise {
 
     //Fin de l'initialisation, on envoie les données à l'algorithme
     Algorithm algo = new Algorithm(students, schools, choix);
-		algo.sorting();
+    System.out.println("YOUHOU");
+	algo.sorting();
 	}
 
   public static String serenades(){
