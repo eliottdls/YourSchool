@@ -15,7 +15,7 @@ public class Student {
      * Liste des écoles préférées de l'étudiant (liste ordonnée)
      * Un étudiant demande 5 écoles
      */
-	private ArrayList<String> preference; //List<School>
+  private ArrayList<String> preference; //List<School>
 
   private String actuelPreference; //School
 
@@ -30,7 +30,10 @@ public class Student {
 		this.nom = nom;
     this.id = id;
     preference = new ArrayList<String>();
-    preference.add(vows.split(","));
+    String[] voeux = vows.split(",");
+    for (int i = 0; i < 5; i++) {
+        preference.add(voeux[i]);
+    }
     actuelPreference = preference.get(0);
     accepte = null;
 	}
@@ -46,9 +49,14 @@ public class Student {
 	/** Obtenir la stratégie du joueur.
 	 * @return la stratégie du joueur.
 	 */
-	public ArrayList<School> getPreference() {
-		ArrayList<School> p = preference;
+	public ArrayList<String> getPreference() {
+		ArrayList<String> p = preference;
 		return p;
+	}
+	
+	public String getPreferenceIndex(int index) {
+		String school = preference.get(index);
+		return school;
 	}
 
   public String getactuelPreference() {
