@@ -44,13 +44,13 @@ public class Algorithm {
       //School2Student();
       System.out.println("A FAIRE");
     }
-
+    
     //Une fois le tri fini, on affiche le résultat
-    Iterator<School> itr=schools.iterator();//getting the Iterator
-    while(itr.hasNext()){//check if iterator has the elements
-      System.out.println(itr.next().toString());
-      System.out.println("Nombre de tours de l'algorithme : " + Nbtours);
+    for (int i = 0; i < 7; i ++) {
+    	System.out.println(schools.get(i) + " (" + schools.get(i).getPlaces() + ")" + " chose " + schools.get(i).getListe());
     }
+    
+    System.out.println("Nombre de tours de l'algorithme : " + Nbtours);
 	}
 
   /*
@@ -60,7 +60,7 @@ public class Algorithm {
     fini = true; //Le tri est considéré fini tant qu'un élève ne dit pas le contraire
 
     //Chaque étudiant fait une proposition à son école préférée actuelle
-    Iterator<Student> itrStud=students.iterator();//getting the Iterator
+    //Iterator<Student> itrStud=students.iterator();//getting the Iterator
     
     for (int s = 0; s < 25; s++) {
     	//System.out.println(students.get(s));
@@ -73,12 +73,20 @@ public class Algorithm {
         }
     }
     
+    /*Temporaire*/
+    for (int i = 0; i < 7; i ++) {
+    	System.out.println(schools.get(i) + " (" + schools.get(i).getPlaces() + ")" + " chose " + schools.get(i).getListe());
+    }
+    System.out.println("Nombre de tours de l'algorithme : " + Nbtours);
+    System.out.println("----------------------------------------------");
+    /* Fin temporaire */
+    
     
     //Si ce n'est pas fini, on refait un tour de demandes
     if (fini == false){
+      Nbtours += 1;
       Student2School();
     }
-    Nbtours += 1;
   }
 
   //Un élève se propose à une école
@@ -90,22 +98,33 @@ public class Algorithm {
 			school = schools.get(s);
 		}
 	}
+	//System.out.println(school);
 	  
     int nbMax = school.getPlaces();
+    //System.out.println(nbMax);
     try {
     	if (school.getListeIndex(nbMax - 1) != null) {
     	      int i = 0;
     	      Student competition = school.getListeIndex(i);
+    	      int x = school.getPreference().indexOf(student);
+      		  int y = school.getPreference().indexOf(competition);
     	      while (school.getListeIndex(i) != null){
     	        if (school.getPreference().indexOf(competition) < school.getPreference().indexOf(school.getListeIndex(i))){
     	          competition = school.getListeIndex(i);
     	        }
     	        i += 1;
-    	      } if (school.getPreference().indexOf(student) < school.getPreference().indexOf(competition)) {
+        		System.out.println("COUCOU1");
+        		System.out.println(x + " " + y);
+    	     // } if (school.getPreference().indexOf(student) < school.getPreference().indexOf(competition)) {
+    	      } if (x < y) {
     	        //On retire l'étudiant le moins bien classé
+    	    	System.out.println("COUCOU30");
+    	    	System.out.println("Ecole avant retirer" + school.getListe());
     	        school.removeListe(competition);
+    	        System.out.println("Ecole apres retirer" + school.getListe());
     	        Integer indexComp = competition.getPreference().indexOf(school.getNom()); //indice de l'école actuelle dans les préférences de l'élève
     	        competition.setactuelPreference(competition.getPreference().get(indexComp+1)); //On passe donc à l'école suivante
+    	        //competition.setactuelPreference(indexComp + 1);
     	        competition.setAccepte(null);
 
     	        //On ajoute l'étudiant qui vient de faire sa demande
@@ -115,8 +134,13 @@ public class Algorithm {
     	        Integer indexStud = student.getPreference().indexOf(school.getNom()); //indice de l'école actuelle dans les préférences de l'élève
     	        student.setactuelPreference(student.getPreference().get(indexStud+1)); //On passe donc à l'école suivante
     	      }
+    	} else {
+    		System.out.println("COUCOU");
     	}
-    } catch (NullPointerException e) { //Si entre dans le catch, il reste de la place dans la liste
+    } catch (IndexOutOfBoundsException e) { //Si entre dans le catch, il reste de la place dans la liste
+    	//System.out.println(school);
+    	//System.out.println(student);
+    	System.out.println("COUCOU2");
     	school.addListe(student); //On ajoute l'étudiant dans la liste de l'école
         student.setAccepte(school); //On ajoute l'école à l'élève comme choix 1 qui l'a accepté
     }

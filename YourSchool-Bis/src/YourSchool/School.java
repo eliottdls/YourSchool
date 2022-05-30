@@ -33,6 +33,7 @@ public class School {
 		this.id = id;
 		this.places = schoolsStrings;
 		this.preference = schoolsStrings2;
+		liste = new ArrayList<Student>();
 	}
 
 	/** Obtenir le nom d'un joueur.

@@ -54,13 +54,6 @@ public class Initialise {
 				id += 1;
 		    }
 		}
-    //int y = 1;
-    //for (CHAQUE LIGNE DE STUDENTS) {
-    //    String[] studentsStrings = decoupe(FICHIER_students_LIGNE1);
-    //    Student studentsStrings[0] = new Student(studentsStrings[0], y, studentsStrings[1]);
-    //    y += 1;
-    //    students.add(studentsStrings[0]); //Liste des étudiants à envoyer à l'algorithme
-    //}
 
     //On demande à l'utilisateur qui doit faire les sérénades
     choix = serenades();
