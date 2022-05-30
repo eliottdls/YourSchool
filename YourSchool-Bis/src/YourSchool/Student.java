@@ -22,6 +22,9 @@ public class Student {
   private School accepte; //School
   
   private int nbVoeux;
+  
+  private Boolean fini;
+
 
 	/** Construire un joueur à partir de son nom et de sa strategie.
 	 * @param nom nom du joueur
@@ -39,6 +42,7 @@ public class Student {
     }
     this.actuelPreference = preference.get(0);
     this.accepte = null;
+    this.fini = false;
 	}
 
 	/** Obtenir le nom d'un joueur.
@@ -83,6 +87,18 @@ public class Student {
 
   public void setactuelPreference(String school){
     this.actuelPreference = school;
+  }
+  
+  public boolean getFini() {
+	  return fini;
+  }
+  
+  public void setFiniTrue() {
+	  this.fini = true;
+  }
+  
+  public void setFiniFalse() {
+	  this.fini = false;
   }
 
     /** Afficher le jeu.  Le jeu est affiché sous la forme :
