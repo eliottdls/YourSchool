@@ -21,7 +21,7 @@ public class Initialise {
 
     //Réception des fichiers, + découpe
 		int id = 0;
-		try (BufferedReader br = new BufferedReader(new FileReader("src/YourSchool/student_file.txt"))) {
+		try (BufferedReader br = new BufferedReader(new FileReader("src/YourSchool/student_file1.txt"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] studentsStrings = line.split(":");
@@ -30,7 +30,7 @@ public class Initialise {
 			}
 		}
 
-		try (BufferedReader br = new BufferedReader(new FileReader("src/YourSchool/school_file.txt"))) {
+		try (BufferedReader br = new BufferedReader(new FileReader("src/YourSchool/school_file1.txt"))) {
 		    String line;
 		    id = 0;
 		    while ((line = br.readLine()) != null) {
