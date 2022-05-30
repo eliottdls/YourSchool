@@ -28,8 +28,8 @@ public class Student {
 	 * @param strategie strategie du joueur
 	 */
 	public Student(String nom, Integer id, String vows) {
-		assert nom != null;
-		this.nom = nom;
+	assert nom != null;
+	this.nom = nom;
     this.id = id;
     preference = new ArrayList<String>();
     String[] voeux = vows.split(",");
@@ -37,8 +37,8 @@ public class Student {
     for (int i = 0; i < voeux.length; i++) {
         preference.add(voeux[i]);
     }
-    actuelPreference = preference.get(0);
-    accepte = null;
+    this.actuelPreference = preference.get(0);
+    this.accepte = null;
 	}
 
 	/** Obtenir le nom d'un joueur.
@@ -89,6 +89,6 @@ public class Student {
      *
 	 */
     public String toString() {
-    	return "Student " + this.nom;
+    	return this.nom;
     }
 }

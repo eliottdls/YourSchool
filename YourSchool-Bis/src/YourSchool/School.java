@@ -51,6 +51,10 @@ public class School {
 		ArrayList<Student> l = preference;
 		return l;
 	}
+	
+	/*public int getNbPreference(Student stud) {
+		
+	}*/
 
 	public Integer getPlaces(){
 		Integer n = this.places;
@@ -60,6 +64,16 @@ public class School {
 	public ArrayList<Student> getListe(){
 		ArrayList<Student> l = liste;
 		return l;
+	}
+	
+	public int getIndexStudent(Student stud) {
+		for (int i = 0; i < liste.size(); i++) {
+			if( preference.get(i) == stud) {
+				return i;
+			}
+		}
+		System.out.println("ERREUR");
+		return -1;
 	}
 	
 	public Student getListeIndex(int index){

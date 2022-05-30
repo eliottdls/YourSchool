@@ -77,11 +77,13 @@ public class Algorithm {
 
         //On vérifie si c'est fini (si chaque étudiant à une école qui l'a accepté)
         //Si un seul n'a pas d'école, ce ne sera pas fini tant que tous ses choix ne seront pas refusés (son choix n°5).
-    	
-        if (students.get(s).getAccepte() == null && students.get(s).getactuelPreference() != students.get(s).getPreferenceIndex(students.get(s).getNbVoeux() - 1) ){
+        Student2SchoolProposal(students.get(s), students.get(s).getactuelPreference());
+        
+        System.out.println(students.get(s) + " " + students.get(s).getAccepte());
+        
+        if (students.get(s).getAccepte() == null && students.get(s).getactuelPreference() == students.get(s).getPreferenceIndex(students.get(s).getNbVoeux() - 1) ){
           fini = false;
           System.out.println(students.get(s) + " n'a pas fini");
-          Student2SchoolProposal(students.get(s), students.get(s).getactuelPreference());
         }
     }
     
@@ -114,16 +116,24 @@ public class Algorithm {
 	  
     int nbMax = school.getPlaces();
     //System.out.println(nbMax);
-    try {
-    	if (school.getListeIndex(nbMax - 1) != null) {
-    	      int i = 0;
-    	      Student competition = school.getListeIndex(i);
-      		  for (int z = 0; z < nbSchools; z++) {
-      			if (school.getPreference().indexOf(competition) < school.getPreference().indexOf(school.getListeIndex(i))){
-      	          competition = school.getListeIndex(i);
+    	//if (school.getListeIndex(nbMax - 1) != null) {
+        if (school.getListe().size() == nbMax) {
+        	
+    	      /*Student competition = school.getListeIndex(0);
+      		  for (int z = 0; z < nbStudents; z++) {
+      			if (school.getPreference().indexOf(competition) < school.getPreference().indexOf(school.getListeIndex(z))){
+      	          competition = school.getListeIndex(z);
       	        }
-      		  }
-    	      
+      		  }*/
+        	
+        	Student competition = school.getListeIndex(0);
+        	  for (int z = 1; z < school.getListe().size(); z++) {
+        		  if (school.getIndexStudent(school.getListeIndex(z)) < school.getIndexStudent(competition)) {
+        			  competition = school.getListeIndex(z);
+        		  }
+        	  }
+        	  
+    	      System.out.println(competition + " est en compet avec " + student);
     	      if (school.getPreference().indexOf(student) < school.getPreference().indexOf(competition)) {
     	        //On retire l'étudiant le moins bien classé
     	        school.removeListe(competition);
@@ -131,6 +141,7 @@ public class Algorithm {
     	        competition.setactuelPreference(competition.getPreference().get(indexComp+1)); //On passe donc à l'école suivante
     	        //competition.setactuelPreference(indexComp + 1);
     	        competition.setAccepte(null);
+    	        System.out.println("DEnis " + competition.getAccepte());
 
     	        //On ajoute l'étudiant qui vient de faire sa demande
     	        school.addListe(student); //On ajoute l'étudiant dans la liste de l'école
@@ -140,10 +151,11 @@ public class Algorithm {
     	        student.setactuelPreference(student.getPreference().get(indexStud+1)); //On passe donc à l'école suivante
     	      }
     	}
-    } catch (IndexOutOfBoundsException e) { //Si entre dans le catch, il reste de la place dans la liste
-    	school.addListe(student); //On ajoute l'étudiant dans la liste de l'école
-        student.setAccepte(school); //On ajoute l'école à l'élève comme choix 1 qui l'a accepté
-    }
+        else {
+        	System.out.println(student + " se rajoute");
+        	school.addListe(student); //On ajoute l'étudiant dans la liste de l'école
+        	student.setAccepte(school); //On ajoute l'école à l'élève comme choix 1 qui l'a accepté
+        }
   }
 
   /*
