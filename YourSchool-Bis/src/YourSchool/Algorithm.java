@@ -106,22 +106,15 @@ public class Algorithm {
     	if (school.getListeIndex(nbMax - 1) != null) {
     	      int i = 0;
     	      Student competition = school.getListeIndex(i);
-    	      int x = school.getPreference().indexOf(student);
-      		  int y = school.getPreference().indexOf(competition);
-    	      while (school.getListeIndex(i) != null){
-    	        if (school.getPreference().indexOf(competition) < school.getPreference().indexOf(school.getListeIndex(i))){
-    	          competition = school.getListeIndex(i);
-    	        }
-    	        i += 1;
-        		System.out.println("COUCOU1");
-        		System.out.println(x + " " + y);
-    	     // } if (school.getPreference().indexOf(student) < school.getPreference().indexOf(competition)) {
-    	      } if (x < y) {
+      		  for (int z = 0; z < 7; z++) {
+      			if (school.getPreference().indexOf(competition) < school.getPreference().indexOf(school.getListeIndex(i))){
+      	          competition = school.getListeIndex(i);
+      	        }
+      		  }
+    	      
+    	      if (school.getPreference().indexOf(student) < school.getPreference().indexOf(competition)) {
     	        //On retire l'étudiant le moins bien classé
-    	    	System.out.println("COUCOU30");
-    	    	System.out.println("Ecole avant retirer" + school.getListe());
     	        school.removeListe(competition);
-    	        System.out.println("Ecole apres retirer" + school.getListe());
     	        Integer indexComp = competition.getPreference().indexOf(school.getNom()); //indice de l'école actuelle dans les préférences de l'élève
     	        competition.setactuelPreference(competition.getPreference().get(indexComp+1)); //On passe donc à l'école suivante
     	        //competition.setactuelPreference(indexComp + 1);
