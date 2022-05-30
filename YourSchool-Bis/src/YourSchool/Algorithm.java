@@ -22,17 +22,21 @@ public class Algorithm {
 	
 	private int Nbtours;
 
-  private Boolean fini;
+	private Boolean fini;
+	
+	private int nbSchools, nbStudents;
 
 	/** Construire un arbitre à partir de deux joueurs.
 	 * @param j1 joueur
      * @param j2 joueur
 	 */
-	public Algorithm(ArrayList<Student> students, ArrayList<School> schools, String ask) {
+	public Algorithm(ArrayList<Student> students, ArrayList<School> schools, String ask, int nbScho, int nbStud) {
 		this.students = students;
 		this.schools = schools;
 		this.WhoIsAsking = ask;
-		this.Nbtours = 0;
+		this.Nbtours = 1;
+		this.nbSchools = nbScho;
+		this.nbStudents = nbStud;
 	}
 
    /** Mise en oeuvre de l'algorithme de tri.
@@ -46,10 +50,16 @@ public class Algorithm {
     }
     
     //Une fois le tri fini, on affiche le résultat
-    for (int i = 0; i < 7; i ++) {
+    for (int i = 0; i < nbSchools; i ++) {
     	System.out.println(schools.get(i) + " (" + schools.get(i).getPlaces() + ")" + " chose " + schools.get(i).getListe());
     }
+    /*for (int v = 0; v < nbSchools; v ++) {
+    	if (students.get(v).getAccepte() = NULL) {
+    		
+    	}
+    }*/
     
+    System.out.println("Students whithout school : " );
     System.out.println("Nombre de tours de l'algorithme : " + Nbtours);
 	}
 
@@ -62,19 +72,21 @@ public class Algorithm {
     //Chaque étudiant fait une proposition à son école préférée actuelle
     //Iterator<Student> itrStud=students.iterator();//getting the Iterator
     
-    for (int s = 0; s < 25; s++) {
+    for (int s = 0; s < nbStudents; s++) {
     	//System.out.println(students.get(s));
 
         //On vérifie si c'est fini (si chaque étudiant à une école qui l'a accepté)
         //Si un seul n'a pas d'école, ce ne sera pas fini tant que tous ses choix ne seront pas refusés (son choix n°5).
-        if (students.get(s).getAccepte() == null && students.get(s).getactuelPreference() != students.get(s).getPreferenceIndex(4) ){
+    	
+        if (students.get(s).getAccepte() == null && students.get(s).getactuelPreference() != students.get(s).getPreferenceIndex(students.get(s).getNbVoeux() - 1) ){
           fini = false;
+          System.out.println(students.get(s) + " n'a pas fini");
           Student2SchoolProposal(students.get(s), students.get(s).getactuelPreference());
         }
     }
     
     /*Temporaire*/
-    for (int i = 0; i < 7; i ++) {
+    for (int i = 0; i < nbSchools; i ++) {
     	System.out.println(schools.get(i) + " (" + schools.get(i).getPlaces() + ")" + " chose " + schools.get(i).getListe());
     }
     System.out.println("Nombre de tours de l'algorithme : " + Nbtours);
@@ -93,7 +105,7 @@ public class Algorithm {
   public void Student2SchoolProposal(Student student, String sch){
 	//On récupère l'école
 	School school = null;
-	for (int s = 0; s < 7; s++)  {
+	for (int s = 0; s < nbSchools; s++)  {
 		if (sch.equals(schools.get(s).getNom())) {
 			school = schools.get(s);
 		}
@@ -106,7 +118,7 @@ public class Algorithm {
     	if (school.getListeIndex(nbMax - 1) != null) {
     	      int i = 0;
     	      Student competition = school.getListeIndex(i);
-      		  for (int z = 0; z < 7; z++) {
+      		  for (int z = 0; z < nbSchools; z++) {
       			if (school.getPreference().indexOf(competition) < school.getPreference().indexOf(school.getListeIndex(i))){
       	          competition = school.getListeIndex(i);
       	        }
@@ -127,13 +139,8 @@ public class Algorithm {
     	        Integer indexStud = student.getPreference().indexOf(school.getNom()); //indice de l'école actuelle dans les préférences de l'élève
     	        student.setactuelPreference(student.getPreference().get(indexStud+1)); //On passe donc à l'école suivante
     	      }
-    	} else {
-    		System.out.println("COUCOU");
     	}
     } catch (IndexOutOfBoundsException e) { //Si entre dans le catch, il reste de la place dans la liste
-    	//System.out.println(school);
-    	//System.out.println(student);
-    	System.out.println("COUCOU2");
     	school.addListe(student); //On ajoute l'étudiant dans la liste de l'école
         student.setAccepte(school); //On ajoute l'école à l'élève comme choix 1 qui l'a accepté
     }

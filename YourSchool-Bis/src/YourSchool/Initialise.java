@@ -18,12 +18,15 @@ public class Initialise {
     ArrayList<School> schools = new ArrayList<School>();
     ArrayList<Student> students = new ArrayList<Student>();
     String choix; //Qui fait les demande
+    int nbScho = 0;
+    int nbStud = 0;;
 
     //Réception des fichiers, + découpe
 		int id = 0;
 		try (BufferedReader br = new BufferedReader(new FileReader("src/YourSchool/student_file1.txt"))) {
 			String line;
 			while ((line = br.readLine()) != null) {
+				nbStud += 1;
 				String[] studentsStrings = line.split(":");
 				//Student test2 = new Student(studentsStrings[0], id, studentsStrings[1]);
 				students.add(new Student(studentsStrings[0], id, studentsStrings[1])); //Liste des étudiants à envoyer à l'algorithme
@@ -34,6 +37,7 @@ public class Initialise {
 		    String line;
 		    id = 0;
 		    while ((line = br.readLine()) != null) {
+		    	nbScho += 1;
 				String[] schoolsStrings = line.split(":");
 				//School test = new School(schoolsStrings[0], id, (integer)schoolsStrings[1], schoolsStrings[2]);
 				ArrayList<Student> schoolpreference = new ArrayList<Student>();
@@ -42,7 +46,7 @@ public class Initialise {
 				
 				for (int x = 0; x < taille; x++) {
 					//System.out.println("X " + schoolpref[x]);
-					for (int s = 0; s < 25; s ++) {
+					for (int s = 0; s < nbStud; s ++) {
 						if (students.get(s).getNom().equals(schoolpref[x])) {
 			    			schoolpreference.add(students.get(s));
 					    }
@@ -59,10 +63,9 @@ public class Initialise {
     choix = serenades();
 
     //Fin de l'initialisation, on envoie les données à l'algorithme
-    System.out.println("Liste students : " + students);
-    System.out.println("Liste ecoles : " + schools);
-    Algorithm algo = new Algorithm(students, schools, choix);
-    System.out.println("YOUHOU");
+    System.out.println("Liste students (" + nbStud + ") : " + students);
+    System.out.println("Liste ecoles (" + nbScho + ") : " + schools);
+    Algorithm algo = new Algorithm(students, schools, choix, nbScho, nbStud);
 	algo.sorting();
 	}
 

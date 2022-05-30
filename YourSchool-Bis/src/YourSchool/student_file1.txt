@@ -1,4 +1,4 @@
 Pierre:Hard-vard,Wash-ington
 Denis:Wash-ington,Hard-vard
-Xavier:Hard-vard,Wash-ington
+Xavier:Wash-ington,Hard-vard
 Megane:Hard-vard,Wash-ington

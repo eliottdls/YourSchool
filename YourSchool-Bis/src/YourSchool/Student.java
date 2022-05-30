@@ -20,6 +20,8 @@ public class Student {
   private String actuelPreference; //School
 
   private School accepte; //School
+  
+  private int nbVoeux;
 
 	/** Construire un joueur à partir de son nom et de sa strategie.
 	 * @param nom nom du joueur
@@ -31,7 +33,8 @@ public class Student {
     this.id = id;
     preference = new ArrayList<String>();
     String[] voeux = vows.split(",");
-    for (int i = 0; i < 5; i++) {
+    this.nbVoeux = voeux.length;
+    for (int i = 0; i < voeux.length; i++) {
         preference.add(voeux[i]);
     }
     actuelPreference = preference.get(0);
@@ -68,6 +71,11 @@ public class Student {
 		School s = this.accepte;
 		return s;
 	}
+  
+  public int getNbVoeux() {
+	  int n = this.nbVoeux;
+	  return n;
+  }
 
   public void setAccepte(School school){
     this.accepte = school;
