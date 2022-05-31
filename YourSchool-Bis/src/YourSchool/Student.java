@@ -9,8 +9,6 @@ public class Student {
      */
 	private String nom;
 
-  private Integer id;
-
     /** Attribut d'un joueur à visibilité privée.
      * Liste des écoles préférées de l'étudiant (liste ordonnée)
      * Un étudiant demande 5 écoles
@@ -30,10 +28,9 @@ public class Student {
 	 * @param nom nom du joueur
 	 * @param strategie strategie du joueur
 	 */
-	public Student(String nom, Integer id, String vows) {
+	public Student(String nom, String vows) {
 	assert nom != null;
 	this.nom = nom;
-    this.id = id;
     preference = new ArrayList<String>();
     String[] voeux = vows.split(",");
     this.nbVoeux = voeux.length;
@@ -90,7 +87,7 @@ public class Student {
 	  int n = this.nbVoeux;
 	  return n;
   }
-
+ 
   public void setAccepte(School school){
     this.accepte = school;
   }

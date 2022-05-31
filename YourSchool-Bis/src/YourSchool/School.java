@@ -9,16 +9,18 @@ public class School {
      */
 	private String nom;
 
-	private Integer id;
-
     /** Attribut d'une école
      * Tous les étudiants qui demandent l'école sont classés dans l'ordre de choix de l'école
      */
 	private ArrayList<Student> preference; //List<Student>
 	
 	private ArrayList<Student> actuel_preference;
+	private ArrayList<Student> actuel_preference_apres_refus;
+
 
 	private ArrayList<Student> liste;
+	
+	private int dernierRefus; //La place du dernier élève qui a refusé
 
 	/*
 	* Nombre de places dans l'école
@@ -31,19 +33,20 @@ public class School {
 	 * @param nom nom du joueur
 	 * @param strategie strategie du joueur
 	 */
-	public School(String nom, int id, int schoolsStrings, ArrayList<Student> schoolsStrings2) {
+	public School(String nom, int places, ArrayList<Student> schoolsStrings2) {
 		assert nom != null;
 		this.nom = nom;
-		this.id = id;
-		this.places = schoolsStrings;
+		this.places = places;
 		this.preference = schoolsStrings2;
 		liste = new ArrayList<Student>();
 	    this.fini = false;
 	    actuel_preference = new ArrayList<Student>();
 	    //On crée les préférences actuelles d'une école avec les premiers étudiants de sa liste, dans la limite des places disponibles
-	    for (int i = 0; i < schoolsStrings; i++) {
+	    for (int i = 0; i < places; i++) {
 	    	actuel_preference.add(preference.get(i));
 	    }
+	    actuel_preference_apres_refus = actuel_preference;
+	    this.dernierRefus = -1;
 	}
 
 	/** Obtenir le nom d'un joueur.
@@ -62,6 +65,11 @@ public class School {
 		return l;
 	}
 	
+	public Student getPreferenceIndex(int index) {
+		Student s = preference.get(index);
+		return s;
+	}
+	
 	/*public int getNbPreference(Student stud) {
 		
 	}*/
@@ -76,25 +84,15 @@ public class School {
 		return l;
 	}
 	
-	public int getIndexStudent(Student stud) {
+	public int getPreferencePlace(Student student) {
 		for (int i = 0; i < preference.size(); i++) {
-			if( preference.get(i) == stud) {
+			if( preference.get(i) == student) {
 				return i;
 			}
 		}
-		System.out.println("ERREUR");
+		System.out.println(" ERREUR SCHOOL ");
 		return 1000;
 	}
-	
-	/*public int getIndexStudent(Student stud) {
-		for (int i = 0; i < liste.size(); i++) {
-			if( preference.get(i) == stud) {
-				return i;
-			}
-		}
-		System.out.println("ERREUR");
-		return 1000;
-	}*/
 	
 	public Student getListeIndex(int index){
 		Student s = liste.get(index);
@@ -128,7 +126,7 @@ public class School {
     	//return "School " + this.nom + " accepted " + this.liste.toArray();
     }*/
 	public String toString() {
-    	return "School " + this.nom;
+    	return this.nom;
     }
 
 	public ArrayList<Student> getactuelPreference() {
@@ -139,5 +137,57 @@ public class School {
 	public Student getactuelPreferenceIndex(int index) {
 		Student s = actuel_preference.get(index);
 		return s;
+	}
+	
+	
+	public void setactuelPreference(Student student) {
+		actuel_preference.add(student);
+	}
+	
+	/*public void setactuelPreference(Student student) {
+		actuel_preference.add(student);
+	}*/
+	
+	public ArrayList<Student> getactuel_preference_apres_refus() {
+		ArrayList<Student> p = actuel_preference_apres_refus;
+		return p;
+	}
+	
+	public void resetactuel_preference_apres_refus() {
+		actuel_preference_apres_refus = actuel_preference;
+	}
+	
+	public void resetactuel_preference() {
+		actuel_preference = actuel_preference_apres_refus;
+	}
+	
+	public void removeactuel_preference_apres_refus(Student student) {
+		actuel_preference_apres_refus.remove(student);
+	}
+
+	
+	public void removeactuelPreference(int index) {
+		actuel_preference.add(index, null);
+	}
+	
+	/*public void removeactuelPreference(Student student) {
+		for (int i = 0; i < actuel_preference.size(); i++) {
+			if (actuel_preference.get(i) == student ) {
+				actuel_preference.add(i, null);
+			}
+		}
+	}*/
+	
+	/*public void removeactuelPreferenceNull(int index) {
+		actuel_preference.remove(index);
+	}*/
+	
+	public int getDernierRefus() {
+		int p = dernierRefus;
+		return p;
+	}
+	
+	public void setDernierRefus(int place) {
+		dernierRefus = place;
 	}
 }
