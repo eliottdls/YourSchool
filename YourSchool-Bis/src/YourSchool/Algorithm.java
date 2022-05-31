@@ -48,8 +48,7 @@ public class Algorithm {
     if (WhoIsAsking == "students") {
       Student2School();
     } else if (WhoIsAsking == "schools") {
-      //School2Student();
-      System.out.println("A FAIRE");
+      School2Student();
     }
     
     System.out.println();
@@ -162,8 +161,102 @@ public class Algorithm {
   /*
   * Les étudiants demandent une place à leur école favorite encore sur leur liste.
   */
-  /*public void School2Student(){
-    null;
-  }*/
+  public void School2Student(){
+	  fini = true; //Le tri est considéré fini tant qu'une école ne dit pas le contraire
+
+	    //Chaque école fait une proposition à ses étudiants préférés actuels
+	    
+	    for (int s = 0; s < nbSchools; s++) {
+	        if (schools.get(s).getFini() == false) {
+	            School2StudentProposal(schools.get(s), schools.get(s).getactuelPreference());
+	        }
+	    }
+
+	    //On vérifie si c'est fini (si chaque école a rempli sa liste d'acceptance ou si elles ont proposé à tous les élèves de leur liste)
+	    for (int s = 0; s < nbSchools; s++) {
+	    	if (schools.get(s).getFini() == false) {
+	    		fini = false;
+	    	}
+	    }
+
+	    /*Temporaire*/
+	    for (int i = 0; i < nbSchools; i ++) {
+	    	System.out.println(schools.get(i) + " (" + schools.get(i).getPlaces() + ")" + " chose " + schools.get(i).getListe());
+	    }
+	    System.out.println("Nombre de tours de l'algorithme : " + Nbtours);
+	    System.out.println("----------------------------------------------");
+	    /* Fin temporaire */
+	    
+	    
+	    //Si ce n'est pas fini, on refait un tour de demandes
+	    if (fini == false){
+	      Nbtours += 1;
+	      School2Student();
+	    }
+	  
+  }
+  
+  public void School2StudentProposal(School school, ArrayList<Student> actuel_preference) {
+		  
+	    	int nbMax = school.getPlaces();
+	        if (school.getListe().size() == nbMax) {
+	        	
+	        	Student competition = school.getListeIndex(0);
+	        	  for (int z = 1; z < school.getListe().size(); z++) {
+	        		  System.out.println(school.getListeIndex(z) + " est classé " + school.getIndexStudent(school.getListeIndex(z)) + " dans " + school);
+	        		  if (school.getIndexStudent(school.getListeIndex(z)) < school.getIndexStudent(competition)) {
+	        			  competition = school.getListeIndex(z);
+	        		  }
+	        	  }
+	        	  
+	    	      //System.out.println(competition + " est en compet avec " + student);
+	    	      if (school.getPreference().indexOf(student) < school.getPreference().indexOf(competition)) {
+	    	        //On retire l'étudiant le moins bien classé
+	    	        school.removeListe(competition);
+	    	        Integer indexComp = competition.getPreference().indexOf(school.getNom()); //indice de l'école actuelle dans les préférences de l'élève
+	    	        competition.setactuelPreference(competition.getPreference().get(indexComp+1)); //On passe donc à l'école suivante
+	    	        //competition.setactuelPreference(indexComp + 1);
+	    	        competition.setAccepte(null);
+	    	        competition.setFiniFalse();
+	    	        //On ajoute l'étudiant qui vient de faire sa demande
+	    	        school.addListe(student); //On ajoute l'étudiant dans la liste de l'école
+	    	        student.setAccepte(school); //On ajoute l'école à l'élève comme choix 1 qui l'a accepté
+	    	        student.setFiniTrue();
+	    	      } else { //Sinon on modifie la préférence actuelle de l'élève par le suivant
+	    	        Integer indexStud = student.getPreference().indexOf(school.getNom()); //indice de l'école actuelle dans les préférences de l'élève
+	    	        if (student.getactuelPreference().equals(student.getPreferenceIndex(student.getNbVoeux() - 1))){
+	    	        	System.out.println(student + " fini sans école");
+	    	        	studentsWhithoutSchool.add(student);
+	    	        	student.setFiniTrue();
+	    	        } else {
+	        	        student.setactuelPreference(student.getPreference().get(indexStud+1)); //On passe donc à l'école suivante
+	    	        }
+	    	      }
+	    	}
+	        //Sinon on demande aux élèves de la liste actuelle de préférences
+	        else {
+	        	//Pour chaque élève de la liste de souhaits
+	        	for (int i = 0; i < school.getactuelPreference().size(); i++) {
+	        		Student etudiant = school.getactuelPreferenceIndex(i);
+	        		School accepteParEleve = etudiant.getAccepte();
+	        		//Si l'élève n'a pas déjà accepté la demande de l'école (sinon on fait rien)
+	        		if (accepteParEleve != school) {
+	        			if (accepteParEleve == null || etudiant.getPreferencePlace(school) < etudiant.getPreferencePlace(accepteParEleve)) {
+	        				//Alors l'élève accepte cette école
+	        				etudiant.setAccepte(school);
+	        			} else {
+	        				//Sinon, l'école met à jour ses préférences
+	        			}
+	        			
+	        		}
+	        		
+	        	}
+	        	
+	        	school.addListe(student); //On ajoute l'étudiant dans la liste de l'école
+	        	student.setAccepte(school); //On ajoute l'école à l'élève comme choix 1 qui l'a accepté
+	        	student.setFiniTrue();
+	        }
+	  
+  }
 
 }

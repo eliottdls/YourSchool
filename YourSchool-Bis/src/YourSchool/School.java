@@ -15,6 +15,8 @@ public class School {
      * Tous les étudiants qui demandent l'école sont classés dans l'ordre de choix de l'école
      */
 	private ArrayList<Student> preference; //List<Student>
+	
+	private ArrayList<Student> actuel_preference;
 
 	private ArrayList<Student> liste;
 
@@ -22,6 +24,8 @@ public class School {
 	* Nombre de places dans l'école
 	*/
 	private Integer places;
+	
+	private Boolean fini;
 
 	/** Construire un joueur à partir de son nom et de sa strategie.
 	 * @param nom nom du joueur
@@ -34,6 +38,12 @@ public class School {
 		this.places = schoolsStrings;
 		this.preference = schoolsStrings2;
 		liste = new ArrayList<Student>();
+	    this.fini = false;
+	    actuel_preference = new ArrayList<Student>();
+	    //On crée les préférences actuelles d'une école avec les premiers étudiants de sa liste, dans la limite des places disponibles
+	    for (int i = 0; i < schoolsStrings; i++) {
+	    	actuel_preference.add(preference.get(i));
+	    }
 	}
 
 	/** Obtenir le nom d'un joueur.
@@ -98,6 +108,18 @@ public class School {
 	public void removeListe(Student stud){
 		liste.remove(stud);
 	}
+	
+	public boolean getFini() {
+		  return fini;
+	  }
+	  
+	  public void setFiniTrue() {
+		  this.fini = true;
+	  }
+	  
+	  public void setFiniFalse() {
+		  this.fini = false;
+	  }
 
     /** Afficher le jeu.  Le jeu est affiché sous la forme :
      *
@@ -108,4 +130,14 @@ public class School {
 	public String toString() {
     	return "School " + this.nom;
     }
+
+	public ArrayList<Student> getactuelPreference() {
+		ArrayList<Student> p = actuel_preference;
+		return p;
+	}
+	
+	public Student getactuelPreferenceIndex(int index) {
+		Student s = actuel_preference.get(index);
+		return s;
+	}
 }

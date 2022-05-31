@@ -65,6 +65,16 @@ public class Student {
 		String school = preference.get(index);
 		return school;
 	}
+	
+	public int getPreferencePlace(School school) {
+		for (int i = 0; i < preference.size(); i++) {
+			if (preference.get(i).equals(school.getNom())) {
+				return i;
+			}
+		}
+		System.out.println("ERREUR DANS STUDENT");
+		return 1000;
+	}
 
   public String getactuelPreference() {
     String a = actuelPreference;
