@@ -67,14 +67,24 @@ public class School {
 	}
 	
 	public int getIndexStudent(Student stud) {
+		for (int i = 0; i < preference.size(); i++) {
+			if( preference.get(i) == stud) {
+				return i;
+			}
+		}
+		System.out.println("ERREUR");
+		return 1000;
+	}
+	
+	/*public int getIndexStudent(Student stud) {
 		for (int i = 0; i < liste.size(); i++) {
 			if( preference.get(i) == stud) {
 				return i;
 			}
 		}
 		System.out.println("ERREUR");
-		return -1;
-	}
+		return 1000;
+	}*/
 	
 	public Student getListeIndex(int index){
 		Student s = liste.get(index);

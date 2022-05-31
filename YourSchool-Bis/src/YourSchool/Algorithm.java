@@ -122,6 +122,7 @@ public class Algorithm {
         	
         	Student competition = school.getListeIndex(0);
         	  for (int z = 1; z < school.getListe().size(); z++) {
+        		  System.out.println(school.getListeIndex(z) + " est classé " + school.getIndexStudent(school.getListeIndex(z)) + " dans " + school);
         		  if (school.getIndexStudent(school.getListeIndex(z)) < school.getIndexStudent(competition)) {
         			  competition = school.getListeIndex(z);
         		  }
