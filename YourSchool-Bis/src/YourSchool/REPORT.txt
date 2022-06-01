@@ -6,4 +6,30 @@ trds
 
 
 
-Lancer le fichier java initialise.java
+**** Afin d'utiliser notre programme suivez les étapes suivantes ****
+  - Pour sélectionner les fichiers de test modifiez les lignes 30 et 39 du fichier initialise.java
+    pour indiquer le chemin de votre fichier test. Pour plus de faciliter, placer celui-ci dans le package "YourSchool"
+    ou sont situé nos fichiers de test principaux. Puis modifier pour chaque ligne le chemin "src/YourSchool/student_file.txt"
+    en remplaçant "student_file.txt" par votre fichier. Une explication est détaillés plus bas dans ce rapport en ce qui
+    concerne la création d'un fichier test.
+
+  - Lancer ensuite le fichier java initialise.c
+
+  - Il vous sera demandé de choisir si ce sont les écoles ou bien les étudiants qui vont avoir la main sur l'algorithme.
+
+  - Une fois cela fait le programme se sera exécuter et il vous sera demandé si vous souhaitez le relancer.
+
+
+**** Création de fichiers test ****
+Pour que notre programme fonctionne correctement nous avons besoin de 2 fichiers.
+1 fichier qui contiendra l'ensemble des étudiants ainsi que leur préférences.
+1 fichier qui contiendra l'ensemble des écoles et leur classement des étudiants souhaitant y candidater.
+
+Voici le formatage des deux fichiers:
+    [Fichier étudiants]
+    nom_étudiant1:choix1,choix2,choix3
+    nom_étudiant2:choix1,choix2,choix3
+
+    [Fichier écoles]
+    nom_école1:nombre_place:nom_étudiant1,nom_étudiant3,nom_étudiant2
+    nom_école2:nombre_place:nom_étudiant3,nom_étudiant2,étudiant_1
