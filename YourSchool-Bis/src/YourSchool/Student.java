@@ -3,31 +3,16 @@ import java.util.*;
 
 public class Student {
 
-    /** Attribut d'un student à visibilité privée.
-     * Nom de l'étudiant
-     * (on considère que chaque étudiant à un nom unique -> le nom est un id)
-     */
-	private String nom;
-
-    /** Attribut d'un joueur à visibilité privée.
-     * Liste des écoles préférées de l'étudiant (liste ordonnée)
-     * Un étudiant demande 5 écoles
-     */
-  private ArrayList<String> preference; //List<School>
-
-  private String actuelPreference; //School
-
-  private School accepte; //School
-  
-  private int nbVoeux;
-  
-  private Boolean fini;
+  //Attributs d'un étudiant
+  private String nom; //Nom de l'étudiant
+  private ArrayList<String> preference; //Liste des écoles par ordre de préférence
+  private String actuelPreference; //L'école à qui demander
+  private School accepte; //Ecole actuelle qui l'a accepté
+  private int nbVoeux; //Nombre de voeux d' l'étudiants
+  private Boolean fini; //Si l'étudiant a fini
 
 
-	/** Construire un joueur à partir de son nom et de sa strategie.
-	 * @param nom nom du joueur
-	 * @param strategie strategie du joueur
-	 */
+	// Constructeur d'un étudiant
 	public Student(String nom, String vows) {
 	assert nom != null;
 	this.nom = nom;
@@ -42,17 +27,11 @@ public class Student {
     this.fini = false;
 	}
 
-	/** Obtenir le nom d'un joueur.
-	 * @return le nom du joueur
-	 */
 	public String getNom() {
 		String n = this.nom;
 		return n;
 	}
 
-	/** Obtenir la stratégie du joueur.
-	 * @return la stratégie du joueur.
-	 */
 	public ArrayList<String> getPreference() {
 		ArrayList<String> p = preference;
 		return p;
@@ -108,9 +87,6 @@ public class Student {
 	  this.fini = false;
   }
 
-    /** Afficher le jeu.  Le jeu est affiché sous la forme :
-     *
-	 */
     public String toString() {
     	return this.nom;
     }

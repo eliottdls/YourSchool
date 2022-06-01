@@ -3,35 +3,16 @@ import java.util.*;
 
 public class Algorithm {
 
-    /** Attribut d'un arbitre à visibilité privée.
-     * Joueur 1.
-     */
-	private ArrayList<Student> students;
-	//private ArrayList<Student> studentsclone;
-
-    /** Attribut d'un arbitre à visibilité privée.
-     * Joueur 2.
-     */
-	private ArrayList<School> schools;
+    //Attributs de l'algorithme
+	private ArrayList<Student> students; //Liste de tous les étudiants
+	private ArrayList<School> schools; //Liste de toutes les écoles
+	private ArrayList<Student> studentsWhithoutSchool; //Liste des étudiants qui finissent sans école
+	private String WhoIsAsking; //Définit si l'algorithme fait (écoles proposent aux élèves) ou (élèves proposent aux écoles)
+	private int Nbtours; //Nombre de tours que prend l'algorithme pour faire la répartition
+	private Boolean fini; //Définit si l'algorithme a fini la répartition
+	private int nbSchools, nbStudents; //Le nombre d'écoles et le nombre d'étudiants
 	
-	private ArrayList<Student> studentsWhithoutSchool;
-	//private ArrayList<School> schoolsclone;
-
-	/** Attribut d'un arbitre à visibilité privée.
-     * Joueur 2.
-     */
-	private String WhoIsAsking;
-	
-	private int Nbtours;
-
-	private Boolean fini;
-	
-	private int nbSchools, nbStudents;
-	
-	/** Construire un arbitre à partir de deux joueurs.
-	 * @param j1 joueur
-     * @param j2 joueur
-	 */
+	// Constructeur de l'algorithme
 	public Algorithm(ArrayList<Student> students, ArrayList<School> schools, String ask, int nbScho, int nbStud) {
 		this.students = students;
 		this.schools = schools;
@@ -78,9 +59,7 @@ public class Algorithm {
   public void Student2School(){
     fini = true; //Le tri est considéré fini tant qu'un élève ne dit pas le contraire
 
-    //Chaque étudiant fait une proposition à son école préférée actuelle
-    //Iterator<Student> itrStud=students.iterator();//getting the Iterator
-    
+    //Chaque étudiant fait une proposition à son école préférée actuelle    
     for (int s = 0; s < nbStudents; s++) {
         if (students.get(s).getFini() == false) {
             Student2SchoolProposal(students.get(s), students.get(s).getactuelPreference());
@@ -95,13 +74,23 @@ public class Algorithm {
     	}
     }
 
-    /*Temporaire*/
-    for (int i = 0; i < nbSchools; i ++) {
+    /*Affichage des tours temporaires*/
+    /*for (int i = 0; i < nbSchools; i ++) {
     	System.out.println(schools.get(i) + " (" + schools.get(i).getPlaces() + ")" + " chose " + schools.get(i).getListe());
-    }
-    System.out.println("Nombre de tours de l'algorithme : " + Nbtours);
+    }*/
     System.out.println("----------------------------------------------");
-    /* Fin temporaire */
+    System.out.println();
+    System.out.println("----------------------------------------------");
+    System.out.println("		RESULTAT TOUR " + Nbtours);
+    System.out.println("----------------------------------------------");
+    System.out.println("Liste des étudiants (" + nbStudents + ") : " + students);
+    System.out.println("Liste  des écoles (" + nbSchools + ") : " + schools);
+    System.out.println("----------------------------------------------");
+    System.out.println("Nom école	Nombre de places  Places restantes			Etudiants acceptés");
+    for (int i = 0; i < nbSchools; i ++) {
+    	System.out.println(schools.get(i) + "		 " + schools.get(i).getPlaces() + "		" + (schools.get(i).getPlaces() - schools.get(i).getListe().size())  + "		" + schools.get(i).getListe());
+    }
+    /* Fin Affichage des tours temporaires */
     
     
     //Si ce n'est pas fini, on refait un tour de demandes
@@ -126,13 +115,10 @@ public class Algorithm {
         	
         	Student competition = school.getListeIndex(0);
         	  for (int z = 1; z < school.getListe().size(); z++) {
-        		  //System.out.println(school.getListeIndex(z) + " est classé " + school.getPreferencePlace(school.getListeIndex(z)) + " dans " + school);
-        		  if (school.getPreferencePlace(school.getListeIndex(z)) < school.getPreferencePlace(competition)) {
+        		  if (school.getPreferencePlace(school.getListeIndex(z)) > school.getPreferencePlace(competition)) {
         			  competition = school.getListeIndex(z);
         		  }
         	  }
-        	  
-    	      //System.out.println(competition + " est en compet avec " + student);
     	      if (school.getPreference().indexOf(student) < school.getPreference().indexOf(competition)) {
     	        //On retire l'étudiant le moins bien classé
     	        school.removeListe(competition);
@@ -171,7 +157,6 @@ public class Algorithm {
 	    //Chaque école fait une proposition à ses étudiants préférés actuels
 	    
 	    for (int s = 0; s < nbSchools; s++) {
-	    	//schools.get(s).resetactuel_preference();
 	        if (schools.get(s).getFini() == false) {
 	            School2StudentProposal(schools.get(s), schools.get(s).getactuelPreference());
 	        }
@@ -218,14 +203,20 @@ public class Algorithm {
 	    	}
 	    }
 
-	    /*Temporaire*/
-	    for (int i = 0; i < nbSchools; i ++) {
-	    	System.out.println(schools.get(i) + " (" + schools.get(i).getPlaces() + ")" + " chose " + schools.get(i).getListe() + " et a fini : " + schools.get(i).getFini());
-	    }
-	    System.out.println("Nombre de tours de l'algorithme : " + Nbtours);
+	    /*Affichage des tours temporaires*/
 	    System.out.println("----------------------------------------------");
-	    /* Fin temporaire */
-	    
+	    System.out.println();
+	    System.out.println("----------------------------------------------");
+	    System.out.println("		RESULTAT TOUR " + Nbtours);
+	    System.out.println("----------------------------------------------");
+	    System.out.println("Liste des étudiants (" + nbStudents + ") : " + students);
+	    System.out.println("Liste  des écoles (" + nbSchools + ") : " + schools);
+	    System.out.println("----------------------------------------------");
+	    System.out.println("Nom école	Nombre de places  Places restantes			Etudiants acceptés");
+	    for (int i = 0; i < nbSchools; i ++) {
+	    	System.out.println(schools.get(i) + "		 " + schools.get(i).getPlaces() + "		" + (schools.get(i).getPlaces() - schools.get(i).getListe().size())  + "		" + schools.get(i).getListe() + "		" + schools.get(i).getFini());
+	    }
+	    /* Affichage des tours temporaires */
 	    
 	    //Si ce n'est pas fini, on refait un tour de demandes
 	    if (fini == false){
@@ -236,14 +227,8 @@ public class Algorithm {
   }
   
   public void School2StudentProposal(School school, ArrayList<Student> actuel_preference) {
-	  		//school.resetactuel_preference_apres_refus();
-		  
+	  	school.resetactuel_preference_apres_refus();
 	    	int nbMax = school.getPlaces();
-	        /*if (school.getListe().size() == nbMax) {
-	        	//Si la liste de l'école est pleine
-	        	System.out.println("COUCOU UNE ECOLE A FINI");
-	        	school.setFiniTrue();
-	    	}*/
 	        //Sinon on demande aux élèves de la liste actuelle de préférences
 	        if (school.getListe().size() < nbMax) {
 	        	//Pour chaque élève de la liste de souhaits
@@ -251,6 +236,8 @@ public class Algorithm {
 	        		Student etudiant = school.getactuelPreferenceIndex(i);
 	        		School accepteParEleve = etudiant.getAccepte();
 	        		//Si l'élève n'a pas déjà accepté la demande de l'école (sinon on fait rien)
+        			//System.out.println(etudiant + " : (" + school.getPlaces() + ") " + school + " et " + accepteParEleve);
+
 	        		if (accepteParEleve != school) {
 	        			if (accepteParEleve == null || etudiant.getPreferencePlace(school) < etudiant.getPreferencePlace(accepteParEleve)) {
 	        				//Alors l'élève accepte cette école
@@ -260,21 +247,18 @@ public class Algorithm {
 	        				if (accepteParEleve != null) {
 	        					//Il le retirera lui-même
 	        					accepteParEleve.removeactuel_preference_apres_refus(etudiant);
+	        					accepteParEleve.resetactuel_preference();
 	        					//accepteParEleve.removeactuelPreference(accepteParEleve.getactuelPreferencePlace(etudiant));
 		        				accepteParEleve.removeListe(etudiant);
 		        				accepteParEleve.setFiniFalse();
 	        				}
 	        			} else { //Si l'élève refuse l'école
-	        				//System.out.println(school + " prefs : " + school.getPreference());
-	        				//System.out.println("ZZZZZZZZZZZZz : " + school.getPreferencePlace(etudiant) + " et " + school.getDernierRefus());
-	        				//if (school.getPreferencePlace(etudiant) == school.getPreference().size() - 1) {
 		        			if (school.getPreferencePlace(etudiant) > school.getDernierRefus()){
 		        				school.setDernierRefus(school.getPreferencePlace(etudiant));
 		        			}
 	        				school.removeactuel_preference_apres_refus(etudiant);
 	        			}
 	        		}
-	        		
 	        	}
 	        	school.resetactuel_preference();
 	        }
@@ -284,5 +268,4 @@ public class Algorithm {
 	        	school.setFiniTrue();
 	        }
   }
-
 }

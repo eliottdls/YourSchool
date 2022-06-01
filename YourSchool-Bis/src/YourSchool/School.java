@@ -3,36 +3,17 @@ import java.util.*;
 
 public class School {
 
-    /** Attribut d'une école à visibilité privée.
-     * Nom de l'école
-		 * (on considère que chaque école à un nom unique -> le nom est un id)
-     */
+	// Attributs d'une école
 	private String nom;
-
-    /** Attribut d'une école
-     * Tous les étudiants qui demandent l'école sont classés dans l'ordre de choix de l'école
-     */
-	private ArrayList<Student> preference; //List<Student>
-	
-	private ArrayList<Student> actuel_preference;
-	private ArrayList<Student> actuel_preference_apres_refus;
-
-
-	private ArrayList<Student> liste;
-	
+	private ArrayList<Student> preference; //Liste des étudiants classés
+	private ArrayList<Student> actuel_preference; //Demandes actuelles
+	private ArrayList<Student> actuel_preference_apres_refus; //Demande actuelles
+	private ArrayList<Student> liste; //Liste des étudiants acceptés
 	private int dernierRefus; //La place du dernier élève qui a refusé
+	private Integer places;	//Nombre de places dans l'école
+	private Boolean fini; //Si l'école a fini
 
-	/*
-	* Nombre de places dans l'école
-	*/
-	private Integer places;
-	
-	private Boolean fini;
-
-	/** Construire un joueur à partir de son nom et de sa strategie.
-	 * @param nom nom du joueur
-	 * @param strategie strategie du joueur
-	 */
+	//Constructeur d'une école
 	public School(String nom, int places, ArrayList<Student> schoolsStrings2) {
 		assert nom != null;
 		this.nom = nom;
@@ -41,25 +22,20 @@ public class School {
 		liste = new ArrayList<Student>();
 	    this.fini = false;
 	    actuel_preference = new ArrayList<Student>();
+	    actuel_preference_apres_refus = new ArrayList<Student>();
 	    //On crée les préférences actuelles d'une école avec les premiers étudiants de sa liste, dans la limite des places disponibles
 	    for (int i = 0; i < places; i++) {
 	    	actuel_preference.add(preference.get(i));
+		    actuel_preference_apres_refus.add(preference.get(i));
 	    }
-	    actuel_preference_apres_refus = actuel_preference;
 	    this.dernierRefus = -1;
 	}
 
-	/** Obtenir le nom d'un joueur.
-	 * @return le nom du joueur
-	 */
 	public String getNom() {
 		String j = this.nom;
 		return j;
 	}
 
-	/** Obtenir la stratégie du joueur.
-	 * @return la stratégie du joueur.
-	 */
 	public ArrayList<Student> getPreference() {
 		ArrayList<Student> l = preference;
 		return l;
@@ -69,10 +45,6 @@ public class School {
 		Student s = preference.get(index);
 		return s;
 	}
-	
-	/*public int getNbPreference(Student stud) {
-		
-	}*/
 
 	public Integer getPlaces(){
 		Integer n = this.places;
@@ -119,12 +91,6 @@ public class School {
 		  this.fini = false;
 	  }
 
-    /** Afficher le jeu.  Le jeu est affiché sous la forme :
-     *
-	 */
-    /*public String toString() {
-    	//return "School " + this.nom + " accepted " + this.liste.toArray();
-    }*/
 	public String toString() {
     	return this.nom;
     }
@@ -144,21 +110,27 @@ public class School {
 		actuel_preference.add(student);
 	}
 	
-	/*public void setactuelPreference(Student student) {
-		actuel_preference.add(student);
-	}*/
-	
 	public ArrayList<Student> getactuel_preference_apres_refus() {
 		ArrayList<Student> p = actuel_preference_apres_refus;
 		return p;
 	}
 	
 	public void resetactuel_preference_apres_refus() {
-		actuel_preference_apres_refus = actuel_preference;
+		for (int i = actuel_preference_apres_refus.size() - 1; i >= 0; i--) {
+			actuel_preference_apres_refus.remove(i);
+		}
+		for (int x = 0; x < actuel_preference.size(); x++) {
+			actuel_preference_apres_refus.add(actuel_preference.get(x));
+		}
 	}
 	
 	public void resetactuel_preference() {
-		actuel_preference = actuel_preference_apres_refus;
+		for (int i = actuel_preference.size() - 1; i >= 0; i--) {
+			actuel_preference.remove(i);
+		}
+		for (int x = 0; x < actuel_preference_apres_refus.size(); x++) {
+			actuel_preference.add(actuel_preference_apres_refus.get(x));
+		}
 	}
 	
 	public void removeactuel_preference_apres_refus(Student student) {
@@ -169,18 +141,6 @@ public class School {
 	public void removeactuelPreference(int index) {
 		actuel_preference.add(index, null);
 	}
-	
-	/*public void removeactuelPreference(Student student) {
-		for (int i = 0; i < actuel_preference.size(); i++) {
-			if (actuel_preference.get(i) == student ) {
-				actuel_preference.add(i, null);
-			}
-		}
-	}*/
-	
-	/*public void removeactuelPreferenceNull(int index) {
-		actuel_preference.remove(index);
-	}*/
 	
 	public int getDernierRefus() {
 		int p = dernierRefus;
