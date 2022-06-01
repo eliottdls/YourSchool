@@ -1,5 +1,5 @@
 
-On a choisi d'utiliser java pour faire l'algorithme de répartion.
+On a choisi d'utiliser java pour faire l'algorithme de répartion
 
 L'architecture est la suivante :
 
@@ -46,13 +46,6 @@ Classe Algoritmh : Il s'agit de la classe qui effectue le tri des élèves dans 
 				   		
 				   		- 6 : A la fin, on affiche le résultat final (les écoles avec leurs étudiants acceptés et les étudiants sans école)
 				   		
-						
-					
-					
-
-
-
-
 
 
 **** Afin d'utiliser notre programme suivez les étapes suivantes ****
@@ -82,3 +75,6 @@ Voici le formatage des deux fichiers:
     [Fichier écoles]
     nom_école1:nombre_place:nom_étudiant1,nom_étudiant3,nom_étudiant2
     nom_école2:nombre_place:nom_étudiant3,nom_étudiant2,étudiant_1
+    
+Pour prouver le fonctionnement du programme, nous avons fait l'algorithme à la main :
+(le fichier Theorie_des_graphes.ods représente un exemple fait main des fichiers school_file.txt et student_file.txt)
