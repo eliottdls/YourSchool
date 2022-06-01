@@ -44,6 +44,12 @@ public class Algorithm {
     for (int i = 0; i < nbSchools; i ++) {
     	System.out.println(schools.get(i) + "		 " + schools.get(i).getPlaces() + "		" + (schools.get(i).getPlaces() - schools.get(i).getListe().size())  + "		" + schools.get(i).getListe());
     }
+    
+    for (int x = 0; x < nbStudents; x++) {
+    	if (students.get(x).getAccepte() == null) {
+    		studentsWhithoutSchool.add(students.get(x));
+    	}
+    }
 
     System.out.println("----------------------------------------------");
     System.out.println("Etudiants sans école : " + studentsWhithoutSchool );
