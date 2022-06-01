@@ -1,5 +1,54 @@
 
-trds
+On a choisi d'utiliser java pour faire l'algorithme de répartion.
+
+L'architecture est la suivante :
+
+On possède 4 classes :
+	* Student
+	* School
+	* Initialise
+	* Algorithm
+	
+Classe Student : Représente un étudiant avec son nom, sa liste d'écoles classée, et le nom de l'école qui l'a accepté s'il est accepté
+
+Classe School : Représente une école avec son nom, sa liste d'étudiants classée, et le nom des étudiants qui sont acceptés (s'il y en a)
+	
+Classe Initialise : Cette classe contient le main du projet. Il faut compiler et lancer cette classe pour pouvoir lancer le programme.
+					Cette classe sert à initialiser toutes les valeurs avant de lancer l'algorithme. Précisement, cette classe fait :
+					
+						- 1 : Pour le fichier en entrée d'étudiants, la classe extrait le nom des étudiants et la liste des écoles qu'ils ont demandé par préférence.
+						- 1bis : Pour chaque étudiant en entrée de ce fichier, la classe instancie un objet de type Student (la classe associée aux étudiants)
+						- 2 : Pour le fichier en entrée d'école, Initialise extrait le nom de l'école, le nombre de places disponibles et la liste des étudiants qui l'ont demandé, classés par ordre de préférence
+						- 2bis : Pour chaque école de ce fichier, Initialise instancie un objet School
+						- 3 : Initialise demande à l'utilisateur si les étudiants doivent faire les demandes aux écoles ou l'inverse
+						- 4 : Initialise instancie un objet de type Algorithm (en lui donnant la liste des objets School et Student, le sens de sérénade et le nombre d'écoles et d'étudiants
+						- 5 : Initialise appelle la méthode sorting associée à l'objet Algorithm, ce qui lance le tri
+					A la fin d'initialise, chaque étudiant est un objet de type Student et chaque école est un objet de type School (si on a 7 écoles et 25 étudiants, on aura 7 objets de type School et 25 de type Student)						
+
+Classe Algoritmh : Il s'agit de la classe qui effectue le tri des élèves dans les écoles (selon le sens choisi dans Initialise)
+				   Une fois que la méthode sorting est appelée par Initialise, Algorithm fait :
+				   		- 1 : Si le tri est (Elèves demandent aux écoles) Algoritmh lance le tri dans ce sens (en appelant la méthode associée), sinon elle appelle la méthode de (Ecoles demandes aux élèves)
+				   		
+				   		Sens Etudiants demandent aux Ecoles :
+				   		- 2 : Début tour : Chaque Etudiant peut demander l'école la plus haute de sa liste de souhaits au tour 1
+				   		- 3 : Si l'étudiant est rejeté, il demandera l'école suivante de sa liste au prochain tour (s'il n'y a pas d'école suivante dans sa liste, il finit sans école)
+				   		- 3bis: Si l'étudiant est accepté, il considère qu'il a terminé et ne refait pas de tour
+				   		- 4 : En acceptant un étudiant, une école peut avoir à refuser un élève qu'elle avait avant accepté. Cette élève refera donc un tour pour trouver une autre école
+				   		- 5 : Fin tour, on recommence tant que tous les élèves n'ont pas terminé
+				   		
+				   		Sens Ecoles demandent aux Etudiants :
+				   		- 2 : Début tour : Chaque école fait une proposition aux étudiants les plus haut de sa liste de souhaits actuelle dans la limite de ses places disponibles
+				   		- 3 : Si 3 élèves refusent l'école (par exemple), elle aura encore 3 places disponibles au tour suivant
+				   		- 4 : En acceptant une école, un étudiant peut avoir à refuser une école qu'il avait accepté avant. Cela rajoute une place libre dans l'école en question pour le prochain tour
+				   		- 5 : Fin tour, on recommence tant que les écoles ont des places disponibles ou qu'elles n'aient plus d'étudiants dans leur liste de souhaits
+				   		
+				   		Dans les 2 cas, à chaque tour, les informations de ce tour sont affichées.
+				   		
+				   		- 6 : A la fin, on affiche le résultat final (les écoles avec leurs étudiants acceptés et les étudiants sans école)
+				   		
+						
+					
+					
 
 
 
